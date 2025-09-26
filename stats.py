@@ -7,7 +7,7 @@ def sort_on(items):
 
 def get_num_words():
 
-   with open(sys.argv) as f: 
+   with open(sys.argv[1]) as f: 
       file_contents = f.read()
       temp = file_contents.lower()
 
@@ -24,22 +24,18 @@ def get_num_words():
       
       json.dumps(mydict)
 
+      if len(sys.argv) != 2:
+         print("Usage: python3 main.py <path_to_book>")
+         sys.exit(1)
+
       
       print("""============ BOOKBOT ============
       Analyzing book found at books/frankenstein.txt...""")
-            
+
       print("""----------- Word Count ----------
       Found""",len(temp.split()),"""total words""")
 
       print("""--------- Character Count -------""")
       for x, y in sorted(mydict.items(), reverse=True, key=lambda item: item[1]):
          if x.isalpha() == True:
-            print(x, ":",y)
-
-      
-      
-      
-
-
-
-
+            print(f"{x}: {y}")
